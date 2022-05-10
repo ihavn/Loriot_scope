@@ -34,7 +34,7 @@ public class UplinkMessageViewModel {
         this.model = model;
         uplinkTable = FXCollections.observableArrayList();
 
-        model.addListener("adddedUplinkMessage", new PropertyChangeListener() {
+        model.addListener("Add", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 updateTableView(evt);
@@ -42,7 +42,7 @@ public class UplinkMessageViewModel {
 
             private void updateTableView(PropertyChangeEvent evt) {
                 Platform.runLater(() -> {
-                    populateTableRow((int)evt.getNewValue(), model.getUplinkMessage((int)evt.getNewValue()));
+                    populateTableRow(0, model.getUplinkMessage((int)evt.getNewValue()));
                 });
             }
         });

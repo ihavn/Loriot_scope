@@ -28,7 +28,7 @@ public class UplinkMessageModelHandlerImpl implements UplinkMessageModelHandler 
     @Override
     public void addUplinkMessage(UplinkMessageModel uplinkMessage) {
         uplinkMessages.add(uplinkMessage);
-        changeSupport.firePropertyChange( "adddedUplinkMessage", null,0);
+        changeSupport.firePropertyChange( "Add", null,uplinkMessages.size()-1);
     }
 
     @Override

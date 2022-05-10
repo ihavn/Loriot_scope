@@ -7,6 +7,8 @@ import org.edu.via.sep4.lorawan_scope.core.ViewHandler;
 import org.edu.via.sep4.lorawan_scope.core.ViewModelFactory;
 import org.edu.via.sep4.lorawan_scope.lorawan.LoRaWANHandler;
 
+import static java.lang.Thread.sleep;
+
 public class LoRaWANScopeApp extends Application {
     private LoRaWANHandler loRaWANHandler;
 

@@ -1,8 +1,5 @@
 package org.edu.via.sep4.lorawan_scope.lorawan;
 
-import org.edu.via.sep4.lorawan_scope.model.UplinkMessageModel;
-import org.edu.via.sep4.lorawan_scope.model.UplinkMessageModelHandler;
-import org.edu.via.sep4.lorawan_scope.model.UplinkMessageModelImpl;
 import org.json.JSONObject;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -13,7 +10,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class WebsocketClient implements WebSocket.Listener {
     private WebSocket server;
-    private UplinkMessageModelHandler uplinkMessageModel;
+    private LoRaWANMessageHandler loRaWANMessageHandler;
+
 
     // Send down-link message to device
     // Must be in Json format according to https://github.com/ihavn/IoT_Semester_project/blob/master/LORA_NETWORK_SERVER.md
@@ -23,8 +21,8 @@ public class WebsocketClient implements WebSocket.Listener {
 
     // E.g. url: "wss://iotnet.teracom.dk/app?token=??????????????????????????????????????????????="
     // Substitute ????????????????? with the token you have been given
-    public WebsocketClient(String url, UplinkMessageModelHandler uplinkMessageModelHandler) {
-        this.uplinkMessageModel = uplinkMessageModelHandler;
+    public WebsocketClient(String url, LoRaWANMessageHandler loRaWANMessageHandler) {
+        this.loRaWANMessageHandler = loRaWANMessageHandler;
         HttpClient client = HttpClient.newHttpClient();
         CompletableFuture<WebSocket> ws = client.newWebSocketBuilder()
                 .buildAsync(URI.create(url), this);
@@ -70,10 +68,9 @@ public class WebsocketClient implements WebSocket.Listener {
         JSONObject jsonObject = new JSONObject(data.toString());
         String indented = jsonObject.toString(4);
         System.out.println(indented);
-        if (jsonObject.getString("cmd").equals("rx")) {
-            // @todo Change to real values
-            uplinkMessageModel.addUplinkMessage(new UplinkMessageModelImpl(jsonObject.getString("EUI"), "2020 DUMMY", jsonObject.getInt("fcnt"), jsonObject.getInt("port"), jsonObject.getString("data")));
-        }
+
+        loRaWANMessageHandler.unpackLoRaWANMessage(data.toString());
+
         webSocket.request(1);
         return new CompletableFuture().completedFuture("onText() completed.").thenAccept(System.out::println);
     };
