@@ -11,12 +11,5 @@ public class ModelFactory {
         if(uplinkMessageModel == null) uplinkMessageModel = new UplinkMessageModelHandlerImpl();
         return uplinkMessageModel;
     }
-
-/*
-    public DownlinkMessageModel getDownlinkMessageModel() {
-        if(downlinkMessageModel == null) downlinkMessageModel = new DownlinkMessageModelManager();
-        return downlinkMessageModel;
-    }
-*/
 }
 

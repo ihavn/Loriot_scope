@@ -2,9 +2,9 @@ package org.edu.via.sep4.lorawan_scope.core;
 
 import org.edu.via.sep4.lorawan_scope.view.uplink_message.UplinkMessageViewModel;
 public class ViewModelFactory {
-    private ModelFactory modelFactory;
+    private final ModelFactory modelFactory;
     private UplinkMessageViewModel uplinkMessageViewModel;
-    //privat DownLinkViewModel downlinkViewModel;
+    //private DownLinkViewModel downlinkViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory) {
         this.modelFactory=modelFactory;
@@ -16,12 +16,4 @@ public class ViewModelFactory {
         }
         return uplinkMessageViewModel;
     }
-/*
-    public DownlinkMessageViewModel getDownlinkMessageViewModel() {
-        if (downlinkMessageViewModel == null) {
-            downlinkMessageViewModel = new DownlinkMessageViewModel(modelFactory.getDownlinkMessageModel());
-        }
-        return downlinkMessageViewModel;
-    }
- */
 }

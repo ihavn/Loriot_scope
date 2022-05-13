@@ -5,14 +5,10 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class UplinkMessageModelHandlerImpl implements UplinkMessageModelHandler {
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-    private ArrayList<UplinkMessageModel> uplinkMessages = new ArrayList<>();
+    private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+    private final ArrayList<UplinkMessageModel> uplinkMessages = new ArrayList<>();
 
     public UplinkMessageModelHandlerImpl() {
-        for (int i = 0; i < 5; i++) {
-            addUplinkMessage(new UplinkMessageModelImpl("ABCD1234", "2020-05-09 17:34:00", i, i+1, "1234ABF1"){
-            });
-        }
     }
 
     @Override
@@ -27,8 +23,8 @@ public class UplinkMessageModelHandlerImpl implements UplinkMessageModelHandler 
 
     @Override
     public void addUplinkMessage(UplinkMessageModel uplinkMessage) {
-        uplinkMessages.add(uplinkMessage);
-        changeSupport.firePropertyChange( "Add", null,uplinkMessages.size()-1);
+            uplinkMessages.add(uplinkMessage);
+            changeSupport.firePropertyChange("Add", "", uplinkMessages.size() - 1);
     }
 
     @Override

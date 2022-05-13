@@ -6,11 +6,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class UplinkMessageView {
-    private StringProperty devEUI = new SimpleStringProperty();
-    private StringProperty localTime = new SimpleStringProperty();
-    private IntegerProperty fcntUp = new SimpleIntegerProperty();
-    private IntegerProperty port = new SimpleIntegerProperty();
-    private StringProperty payload = new SimpleStringProperty();
+    private final StringProperty devEUI = new SimpleStringProperty();
+    private final StringProperty localTime = new SimpleStringProperty();
+    private final IntegerProperty fcntUp = new SimpleIntegerProperty();
+    private final IntegerProperty port = new SimpleIntegerProperty();
+    private final StringProperty payload = new SimpleStringProperty();
 
     public UplinkMessageView(String devEUI, String localTime, int fcntUp, int port, String payload) {
         this.devEUI.setValue(devEUI);

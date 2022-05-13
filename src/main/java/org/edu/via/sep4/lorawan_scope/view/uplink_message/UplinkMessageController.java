@@ -17,11 +17,8 @@ public class UplinkMessageController {
     private TableColumn<UplinkMessageView, String> localTimeCol;
     @FXML
     private TableColumn<UplinkMessageView, Integer> portCol;
-    private UplinkMessageViewModel uplinkMessageViewModel;
 
     public void init(UplinkMessageViewModel uplinkMessageViewModel) {
-        this.uplinkMessageViewModel = uplinkMessageViewModel;
-
         devEUICol.setCellValueFactory(cellData -> cellData.getValue().getDevEUIProperty());
         fcntUpCol.setCellValueFactory(cellData -> cellData.getValue().getFcntUpProperty().asObject());
         payloadCol.setCellValueFactory(cellData -> cellData.getValue().getPayloadProperty());

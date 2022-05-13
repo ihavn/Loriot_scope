@@ -11,9 +11,9 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public class UplinkMessageViewModel {
-    private UplinkMessageModelHandler model = null;
+    private final UplinkMessageModelHandler model;
 
-    private ObservableList<UplinkMessageView> uplinkTable;
+    private final ObservableList<UplinkMessageView> uplinkTable;
 
     public ObservableList<UplinkMessageView> getUplinkTable() {
         return uplinkTable;
@@ -22,12 +22,12 @@ public class UplinkMessageViewModel {
     private void populateUplinkTable() {
         ArrayList<UplinkMessageModel> elements = model.getUplinkMessages();
         for (UplinkMessageModel e: elements) {
-            uplinkTable.add(0, new UplinkMessageView(e.getDevEUI(), e.getLocalTime(),e.getFcntUp(),e.getPort(),e.getPayload()));
+            uplinkTable.add(0, new UplinkMessageView(e.devEUI(), e.localTime(),e.fcntUp(),e.port(),e.payload()));
         }
     }
 
-    private void populateTableRow(int index, UplinkMessageModel u) {
-        uplinkTable.add(index, new UplinkMessageView(u.getDevEUI(), u.getLocalTime(),u.getFcntUp(),u.getPort(),u.getPayload()));
+    private void populateTableRow(UplinkMessageModel u) {
+        uplinkTable.add(0, new UplinkMessageView(u.devEUI(), u.localTime(),u.fcntUp(),u.port(),u.payload()));
     }
 
     public UplinkMessageViewModel(UplinkMessageModelHandler model) {
@@ -41,9 +41,7 @@ public class UplinkMessageViewModel {
             }
 
             private void updateTableView(PropertyChangeEvent evt) {
-                Platform.runLater(() -> {
-                    populateTableRow(0, model.getUplinkMessage((int)evt.getNewValue()));
-                });
+                Platform.runLater(() -> populateTableRow(model.getUplinkMessage((int)evt.getNewValue())));
             }
         });
 

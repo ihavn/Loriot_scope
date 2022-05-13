@@ -8,21 +8,14 @@ import org.edu.via.sep4.lorawan_scope.view.uplink_message.UplinkMessageControlle
 
 import java.io.IOException;
 
-public class ViewHandler {
-    private Stage stage;
-    private ViewModelFactory viewModelFactory;
-
-    public ViewHandler(Stage stage, ViewModelFactory viewModelFactory) {
-        this.stage = stage;
-        this.viewModelFactory = viewModelFactory;
-    }
+public record ViewHandler(Stage stage, ViewModelFactory viewModelFactory) {
 
     public void start() throws Exception {
         openView("UplinkMessage");
     }
 
     public void openView(String viewToOpen) throws IOException {
-        Scene scene = null;
+        Scene scene;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
 
