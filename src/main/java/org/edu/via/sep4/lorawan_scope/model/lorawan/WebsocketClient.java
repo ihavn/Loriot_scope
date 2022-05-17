@@ -1,4 +1,4 @@
-package org.edu.via.sep4.lorawan_scope.lorawan;
+package org.edu.via.sep4.lorawan_scope.model.lorawan;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 public class WebsocketClient implements WebSocket.Listener {
-    private final WebSocket server;
+    private WebSocket server;
     private final LoRaWANMessageHandler loRaWANMessageHandler;
     private List<CharSequence> parts = new ArrayList<>();
     private CompletableFuture<?> accumulatedMessage = new CompletableFuture<>();
@@ -23,8 +23,12 @@ public class WebsocketClient implements WebSocket.Listener {
 
     // E.g. url: "wss://iotnet.teracom.dk/app?token=??????????????????????????????????????????????="
     // Substitute ????????????????? with the token you have been given
-    public WebsocketClient(String url, LoRaWANMessageHandler loRaWANMessageHandler) {
+    public WebsocketClient(LoRaWANMessageHandler loRaWANMessageHandler) {
         this.loRaWANMessageHandler = loRaWANMessageHandler;
+
+    }
+
+    public void connectToWebSocket(String url) {
         HttpClient client = HttpClient.newHttpClient();
         CompletableFuture<WebSocket> ws = client.newWebSocketBuilder()
                 .buildAsync(URI.create(url), this);
@@ -36,6 +40,7 @@ public class WebsocketClient implements WebSocket.Listener {
         // This WebSocket will invoke onText, onBinary, onPing, onPong or onClose methods on the associated listener (i.e. receive methods) up to n more times
         webSocket.request(1);
         System.out.println("WebSocket Listener has been opened for requests.");
+        loRaWANMessageHandler.websocketConnected();
     }
 
     //onError()
@@ -72,8 +77,8 @@ public class WebsocketClient implements WebSocket.Listener {
         parts.add(message);
         webSocket.request(1);
         if (last) {
-            System.out.println(String.join("",parts));  // Deligate to LaRaWANMessageHandler
-            loRaWANMessageHandler.unpackLoRaWANMessage(String.join("",parts));
+            System.out.println(String.join("", parts));  // Deligate to LaRaWANMessageHandler
+            loRaWANMessageHandler.unpackLoRaWANMessage(String.join("", parts));
             parts = new ArrayList<>();
             accumulatedMessage.complete(null);
             CompletionStage<?> cf = accumulatedMessage;

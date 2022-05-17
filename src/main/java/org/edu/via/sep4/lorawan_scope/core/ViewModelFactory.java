@@ -1,19 +1,19 @@
 package org.edu.via.sep4.lorawan_scope.core;
 
-import org.edu.via.sep4.lorawan_scope.view.uplink_message.UplinkMessageViewModel;
+import org.edu.via.sep4.lorawan_scope.view.lorawan_message.LoRaWANMessageViewModel;
 public class ViewModelFactory {
     private final ModelFactory modelFactory;
-    private UplinkMessageViewModel uplinkMessageViewModel;
+    private LoRaWANMessageViewModel loRaWANMessageViewModel;
     //private DownLinkViewModel downlinkViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory) {
         this.modelFactory=modelFactory;
     }
 
-    public UplinkMessageViewModel getUplinkMessageViewModel() {
-        if (uplinkMessageViewModel == null) {
-            uplinkMessageViewModel = new UplinkMessageViewModel(modelFactory.getUplinkMessageModel());
+    public LoRaWANMessageViewModel getUplinkMessageViewModel() {
+        if (loRaWANMessageViewModel == null) {
+            loRaWANMessageViewModel = new LoRaWANMessageViewModel(modelFactory.getUplinkMessageModel());
         }
-        return uplinkMessageViewModel;
+        return loRaWANMessageViewModel;
     }
 }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.edu.via.sep4.lorawan_scope.view.lorawan_message.LoRaWANMessageController">
+   <children>
+       <VBox alignment="CENTER" spacing="20.0">
+           <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+           </padding>
+          <children>
+              <Label text="IoT Message Scope">
+                  <font>
+                      <Font name="System Bold" size="24.0" />
+                  </font>
+              </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="116.0" text="WEB-Socket URL:">
+                     <opaqueInsets>
+                        <Insets top="2.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="url_field" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="730.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <CheckBox fx:id="remember_url" mnemonicParsing="false" prefHeight="17.0" prefWidth="100.0" selected="true" text="Remember">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </CheckBox>
+                  <Button fx:id="connect_button" mnemonicParsing="false" onAction="#connect" prefHeight="25.0" prefWidth="95.0" text="Connect" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <BorderPane prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;">
+               <top>
+                  <Label text="Down Link Messages" BorderPane.alignment="CENTER_LEFT">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <HBox prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="71.0" text="Device EUI:">
+                           <padding>
+                              <Insets left="2.0" top="4.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="downlink_eui" disable="true" prefHeight="25.0" prefWidth="133.0" />
+                        <Label prefHeight="21.0" prefWidth="42.0" text="Port:">
+                           <padding>
+                              <Insets left="5.0" top="4.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="downlink_port" disable="true" prefHeight="25.0" prefWidth="34.0" />
+                        <Label prefHeight="21.0" prefWidth="63.0" text="Payload:">
+                           <padding>
+                              <Insets left="5.0" top="4.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="downlink_payload" disable="true" prefHeight="25.0" prefWidth="403.0" />
+                        <Label prefHeight="21.0" prefWidth="38.0" text="Prio:">
+                           <padding>
+                              <Insets left="5.0" top="4.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="downlink_prio" disable="true" prefHeight="25.0" prefWidth="35.0" text="0" />
+                        <CheckBox fx:id="downlink_ack" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" text="Ack">
+                           <HBox.margin>
+                              <Insets left="8.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="3.0" top="5.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                  </HBox>
+               </center>
+               <right>
+                  <Button fx:id="downlink_queue_btton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#downlink_queue_button" prefHeight="25.0" prefWidth="75.0" text="Queue" BorderPane.alignment="TOP_CENTER" />
+               </right>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </BorderPane>
+              <TableView fx:id="uplinkDataTable" prefHeight="500.0" prefWidth="1000.0">
+                  <columns>
+                      <TableColumn fx:id="devEUICol" prefWidth="159.0" text="Device EUI" />
+                      <TableColumn fx:id="localTimeCol" prefWidth="163.0" text="Local time" />
+                      <TableColumn fx:id="portCol" prefWidth="57.0" style="-fx-alignment: center;" text="Port" />
+                      <TableColumn fx:id="fcntUpCol" prefWidth="85.0" style="-fx-alignment: center;" text="FCntUp" />
+                      <TableColumn fx:id="payloadCol" prefWidth="535.0" text="Payload" />
+                  </columns>
+              </TableView>
+            <Label prefHeight="17.0" prefWidth="994.0" text="VIA University College - Software Technology Engineering - 2022 - Ib Havn (IHA)">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+          </children>
+       </VBox>
+   </children>
+</AnchorPane>

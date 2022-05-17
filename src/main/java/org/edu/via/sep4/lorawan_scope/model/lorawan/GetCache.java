@@ -1,10 +1,10 @@
-package org.edu.via.sep4.lorawan_scope.lorawan;
+package org.edu.via.sep4.lorawan_scope.model.lorawan;
 
 import org.json.JSONObject;
 
-public record GetCache(LoRaWANHandler loRaWANHandler) implements Runnable {
-    public GetCache(LoRaWANHandler loRaWANHandler) {
-        this.loRaWANHandler = loRaWANHandler;
+public record GetCache(LoRaWANHandlerImpl loRaWANHandlerImpl) implements Runnable {
+    public GetCache(LoRaWANHandlerImpl loRaWANHandlerImpl) {
+        this.loRaWANHandlerImpl = loRaWANHandlerImpl;
         Thread t = new Thread(this, "getCash");
         t.start();
     }
@@ -18,8 +18,8 @@ public record GetCache(LoRaWANHandler loRaWANHandler) implements Runnable {
             jsonObject.put("page", 1);
             jsonObject.put("perPage", 20);
 
-            System.out.println(jsonObject.toString(4));
-            loRaWANHandler.sendDownLinkMessage(jsonObject.toString());
+            System.out.println(jsonObject.toString());
+            loRaWANHandlerImpl.sendDownLinkMessage(jsonObject.toString());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -1,18 +1,16 @@
-package org.edu.via.sep4.lorawan_scope.view.uplink_message;
+package org.edu.via.sep4.lorawan_scope.view.lorawan_message;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class UplinkMessageView {
+public class LoRaWANMessageView {
     private final StringProperty devEUI = new SimpleStringProperty();
     private final StringProperty localTime = new SimpleStringProperty();
-    private final IntegerProperty fcntUp = new SimpleIntegerProperty();
-    private final IntegerProperty port = new SimpleIntegerProperty();
+    private final StringProperty fcntUp = new SimpleStringProperty();
+    private final StringProperty port = new SimpleStringProperty();
     private final StringProperty payload = new SimpleStringProperty();
 
-    public UplinkMessageView(String devEUI, String localTime, int fcntUp, int port, String payload) {
+    public LoRaWANMessageView(String devEUI, String localTime, String fcntUp, String port, String payload) {
         this.devEUI.setValue(devEUI);
         this.localTime.setValue(localTime);
         this.fcntUp.setValue(fcntUp);
@@ -28,11 +26,11 @@ public class UplinkMessageView {
         return localTime;
     }
 
-    public IntegerProperty getFcntUpProperty() {
+    public StringProperty getFcntUpProperty() {
         return fcntUp;
     }
 
-    public IntegerProperty getPortProperty() {
+    public StringProperty getPortProperty() {
         return port;
     }
 
