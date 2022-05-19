@@ -11,8 +11,8 @@ public class LoRaWANScopeApp extends Application {
     public void start(Stage stage) throws Exception {
         ModelFactory modelFactory = new ModelFactory();
         ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
-        ViewHandler viewHandler = new ViewHandler(stage, viewModelFactory );
-        viewHandler.start();
+        ViewHandler viewHandler = new ViewHandler(viewModelFactory );
+        viewHandler.start(stage);
     }
 }
 

@@ -1,4 +1,4 @@
-package org.edu.via.sep4.lorawan_scope.view.lorawan_message;
+package org.edu.via.sep4.lorawan_scope.view.main_view;
 
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,24 +12,24 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class LoRaWANMessageViewModel {
+public class UplinkMessageViewModel {
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private LoRaWANMessageHandlerModel model;
 
-    private ObservableList<LoRaWANMessageView> uplinkTable;
+    private ObservableList<UplinkMessageView> uplinkTable;
     private StringProperty websocketURL;
 
     private boolean websocketConnected;
 
-    public ObservableList<LoRaWANMessageView> getUplinkTable() {
+    public ObservableList<UplinkMessageView> getUplinkTable() {
         return uplinkTable;
     }
 
     private void populateTableRow(UplinkMessageDataModel u) {
-        uplinkTable.add(0, new LoRaWANMessageView(u.devEUI(), u.localTime(), u.fcntUp(), u.port(), u.payload()));
+        uplinkTable.add(0, new UplinkMessageView(u.devEUI(), u.localTime(), u.fcntUp(), u.port(), u.payload()));
     }
 
-    public LoRaWANMessageViewModel(LoRaWANMessageHandlerModel model) {
+    public UplinkMessageViewModel(LoRaWANMessageHandlerModel model) {
         this.model = model;
         uplinkTable = FXCollections.observableArrayList();
         websocketURL = new SimpleStringProperty();
@@ -81,5 +81,8 @@ public class LoRaWANMessageViewModel {
 
     public void sendDownlinkMessage(String devEUI, int port, boolean ack, String payLoad, int priority) {
         model.sendDownLinkMessage(devEUI, port, ack, payLoad, priority);
+    }
+
+    public void clear() {
     }
 }

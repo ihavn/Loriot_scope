@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.edu.via.sep4.lorawan_scope.view.downlink_message_view.LoRaWANDownlinkMessageController">
+    <BorderPane prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;">
+        <top>
+            <Label text="Down Link Messages" BorderPane.alignment="CENTER_LEFT">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+        </top>
+        <center>
+            <HBox prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
+                <children>
+                    <Label prefHeight="17.0" prefWidth="71.0" text="Device EUI:">
+                        <padding>
+                            <Insets left="2.0" top="4.0" />
+                        </padding>
+                    </Label>
+                    <TextField fx:id="downlink_eui" disable="true" prefHeight="25.0" prefWidth="133.0" />
+                    <Label prefHeight="21.0" prefWidth="42.0" text="Port:">
+                        <padding>
+                            <Insets left="5.0" top="4.0" />
+                        </padding>
+                    </Label>
+                    <TextField fx:id="downlink_port" disable="true" prefHeight="25.0" prefWidth="34.0" />
+                    <Label prefHeight="21.0" prefWidth="63.0" text="Payload:">
+                        <padding>
+                            <Insets left="5.0" top="4.0" />
+                        </padding>
+                    </Label>
+                    <TextField fx:id="downlink_payload" disable="true" prefHeight="25.0" prefWidth="403.0" />
+                    <Label prefHeight="21.0" prefWidth="38.0" text="Prio:">
+                        <padding>
+                            <Insets left="5.0" top="4.0" />
+                        </padding>
+                    </Label>
+                    <TextField fx:id="downlink_prio" disable="true" prefHeight="25.0" prefWidth="35.0" text="0" />
+                    <CheckBox fx:id="downlink_ack" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" text="Ack">
+                        <HBox.margin>
+                            <Insets left="8.0" />
+                        </HBox.margin>
+                        <padding>
+                            <Insets left="3.0" top="5.0" />
+                        </padding>
+                    </CheckBox>
+                </children>
+            </HBox>
+        </center>
+        <right>
+            <Button fx:id="downlink_queue_btton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#downlink_queue_button" prefHeight="25.0" prefWidth="75.0" text="Queue" BorderPane.alignment="TOP_CENTER" />
+        </right>
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+    </BorderPane>
+</AnchorPane>

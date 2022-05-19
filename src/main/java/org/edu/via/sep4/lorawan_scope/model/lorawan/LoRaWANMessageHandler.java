@@ -10,13 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public record LoRaWANMessageHandler(LoRaWANMessageHandlerModel uplinkMessageModel) {
-
     private String tsToString(long ts) {
         Date date = new Date(ts); // convert seconds to milliseconds
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MM dd HH:mm:ss.SSS"); // the format of your date
         return dateFormat.format(date);
     }
-
     public void unpackLoRaWANMessage(String raw) {
         JSONObject jo = new JSONObject(raw);
         if (jo.getString("cmd").equals("rx")) {
