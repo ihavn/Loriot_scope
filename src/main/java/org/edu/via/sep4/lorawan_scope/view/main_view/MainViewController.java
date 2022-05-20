@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import org.edu.via.sep4.lorawan_scope.core.ViewHandler;
-import org.edu.via.sep4.lorawan_scope.view.downlink_message_view.LoRaWANDownlinkMessageController;
+import org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkMessageController;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -34,12 +34,12 @@ public class MainViewController {
     private Pane downlinkPane;
     private UplinkMessageViewModel uplinkMessageViewModel;
     @FXML
-    private LoRaWANDownlinkMessageController down_link_viewController;
+    private DownlinkMessageController down_link_viewController;
     private ViewHandler viewHandler;
     private Region root;
 
     public void init(ViewHandler viewHandler, UplinkMessageViewModel uplinkMessageViewModel, Region root) {
-        this.down_link_viewController = new LoRaWANDownlinkMessageController();
+        this.down_link_viewController = new DownlinkMessageController();
         this.uplinkMessageViewModel = uplinkMessageViewModel;
         this.viewHandler = viewHandler;
         this.root = root;
@@ -56,6 +56,10 @@ public class MainViewController {
 
         url_field.setText(uplinkMessageViewModel.getWebsocketURL());
 
+        listenToWebsocketConnect();
+    }
+
+    private void listenToWebsocketConnect() {
         uplinkMessageViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -77,9 +81,7 @@ public class MainViewController {
         uplinkMessageViewModel.connectToWebSocket(url_field.getCharacters().toString());
     }
 
-    public void reset() {
-        down_link_viewController.reset();
-    }
+    public void reset() {}
 
     public Region getRoot() {
         return root;

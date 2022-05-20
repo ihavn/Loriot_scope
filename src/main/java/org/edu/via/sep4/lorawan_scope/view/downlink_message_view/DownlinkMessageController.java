@@ -14,7 +14,7 @@ import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkMessageViewModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class LoRaWANDownlinkMessageController {
+public class DownlinkMessageController {
     @FXML
     public TextField downlink_eui;
     public TextField downlink_port;
@@ -58,6 +58,14 @@ public class LoRaWANDownlinkMessageController {
     }
 
     public void reset() {
+
+    }
+
+    public Region getRoot() {
+        return root;
+    }
+
+    public void showView() {
 
     }
 }
