@@ -3,7 +3,7 @@ package org.edu.via.sep4.lorawan_scope;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.edu.via.sep4.lorawan_scope.core.ModelFactory;
-import org.edu.via.sep4.lorawan_scope.core.ViewHandler;
+import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
 import org.edu.via.sep4.lorawan_scope.core.ViewModelFactory;
 
 public class LoRaWANScopeApp extends Application {

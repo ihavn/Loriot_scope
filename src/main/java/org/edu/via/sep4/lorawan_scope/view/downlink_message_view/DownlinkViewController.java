@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import org.edu.via.sep4.lorawan_scope.core.ViewHandler;
+import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
 import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkMessageViewModel;
 
 import java.beans.PropertyChangeEvent;

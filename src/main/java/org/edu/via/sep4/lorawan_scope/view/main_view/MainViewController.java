@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import org.edu.via.sep4.lorawan_scope.core.ViewHandler;
+import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
 import org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkViewController;
 
 import java.beans.PropertyChangeEvent;

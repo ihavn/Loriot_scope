@@ -1,9 +1,10 @@
-package org.edu.via.sep4.lorawan_scope.core;
+package org.edu.via.sep4.lorawan_scope.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import org.edu.via.sep4.lorawan_scope.core.ViewModelFactory;
 import org.edu.via.sep4.lorawan_scope.view.main_view.MainViewController;
 
 import java.io.IOException;
