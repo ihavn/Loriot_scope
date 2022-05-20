@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import org.edu.via.sep4.lorawan_scope.core.ViewHandler;
-import org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkMessageController;
+import org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkViewController;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -34,12 +34,11 @@ public class MainViewController {
     private Pane downlinkPane;
     private UplinkMessageViewModel uplinkMessageViewModel;
     @FXML
-    private DownlinkMessageController down_link_viewController;
+    private DownlinkViewController down_link_viewController;
     private ViewHandler viewHandler;
     private Region root;
 
     public void init(ViewHandler viewHandler, UplinkMessageViewModel uplinkMessageViewModel, Region root) {
-        this.down_link_viewController = new DownlinkMessageController();
         this.uplinkMessageViewModel = uplinkMessageViewModel;
         this.viewHandler = viewHandler;
         this.root = root;

@@ -1,10 +1,9 @@
-package org.edu.via.sep4.lorawan_scope.view;
+package org.edu.via.sep4.lorawan_scope.core;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import org.edu.via.sep4.lorawan_scope.core.ViewModelFactory;
 import org.edu.via.sep4.lorawan_scope.view.main_view.MainViewController;
 
 import java.io.IOException;
@@ -32,7 +31,7 @@ public class ViewHandler {
 
         switch (viewToOpen) {
             case "MainView":
-                root = loadMainView("MainView.fxml");
+                root = loadMainView("/org/edu/via/sep4/lorawan_scope/view/main_view/MainView.fxml");
                 break;
         }
 

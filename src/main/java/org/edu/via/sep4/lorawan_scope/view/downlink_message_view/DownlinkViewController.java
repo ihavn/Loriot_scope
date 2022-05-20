@@ -14,7 +14,7 @@ import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkMessageViewModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class DownlinkMessageController {
+public class DownlinkViewController {
     @FXML
     public TextField downlink_eui;
     public TextField downlink_port;

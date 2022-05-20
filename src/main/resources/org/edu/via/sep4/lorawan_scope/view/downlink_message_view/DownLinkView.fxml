@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkMessageController">
+            fx:controller="org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkViewController">
     <BorderPane prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;">
         <top>
             <Label text="Down Link Messages" BorderPane.alignment="CENTER_LEFT">
@@ -54,7 +54,7 @@
             </HBox>
         </center>
         <right>
-            <Button fx:id="downlink_queue_btton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#downlink_queue_button" prefHeight="25.0" prefWidth="75.0" text="Queue" BorderPane.alignment="TOP_CENTER" />
+            <Button fx:id="downlink_queue_button" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#downlink_queue_button" prefHeight="25.0" prefWidth="75.0" text="Queue" BorderPane.alignment="TOP_CENTER" />
         </right>
         <opaqueInsets>
             <Insets />
