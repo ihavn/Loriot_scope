@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.edu.via.sep4.lorawan_scope.core.ModelFactory;
 import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
-import org.edu.via.sep4.lorawan_scope.core.ViewModelFactory;
+import org.edu.via.sep4.lorawan_scope.view.ViewModelFactory;
 
 public class LoRaWANScopeApp extends Application {
     @Override

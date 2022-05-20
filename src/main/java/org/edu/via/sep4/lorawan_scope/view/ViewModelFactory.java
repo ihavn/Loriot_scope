@@ -1,5 +1,6 @@
-package org.edu.via.sep4.lorawan_scope.core;
+package org.edu.via.sep4.lorawan_scope.view;
 
+import org.edu.via.sep4.lorawan_scope.core.ModelFactory;
 import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkMessageViewModel;
 public class ViewModelFactory {
     private final ModelFactory modelFactory;
