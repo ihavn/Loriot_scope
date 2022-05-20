@@ -1,10 +1,10 @@
-package org.edu.via.sep4.lorawan_scope.core;
+package org.edu.via.sep4.lorawan_scope.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkMessageController;
+import org.edu.via.sep4.lorawan_scope.core.ViewModelFactory;
 import org.edu.via.sep4.lorawan_scope.view.main_view.MainViewController;
 
 import java.io.IOException;
@@ -16,7 +16,6 @@ public class ViewHandler {
     private ViewModelFactory viewModelFactory;
 
     private MainViewController mainViewController;
-    private DownlinkMessageController downlinkMessageController;
 
     public ViewHandler( ViewModelFactory viewModelFactory) {
         this.viewModelFactory = viewModelFactory;
@@ -33,7 +32,7 @@ public class ViewHandler {
 
         switch (viewToOpen) {
             case "MainView":
-                root = loadMainView("/org/edu/via/sep4/lorawan_scope/view/main_view/MainView.fxml");
+                root = loadMainView("MainView.fxml");
                 break;
         }
 
@@ -46,8 +45,6 @@ public class ViewHandler {
         primaryStage.setTitle(title);
         primaryStage.setScene(currentScene);
         primaryStage.show();
-
-        downlinkMessageController.showView();
     }
     /*
         if ("UplinkMessage".equals(viewToOpen)) {
@@ -60,7 +57,7 @@ public class ViewHandler {
 
 
 
-       // Image icon = new Image("zsrc/main/resources/org/edu/via/sep4/lorawan_scope/view/icons8-analyze-24.png");
+       // Image icon = new Image("org/edu/via/sep4/lorawan_scope/view/icons8-analyze-24.png");
        // stage.getIcons().add(icon);
 
         scene = new Scene(root);
@@ -91,26 +88,6 @@ public class ViewHandler {
             mainViewController.reset();
         }
         return mainViewController.getRoot();
-    }
-
-    private Region loadDownlinkView(String fxmlFile) {
-        Region root = null;
-        if (downlinkMessageController == null) {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource(fxmlFile));
-                root = loader.load();
-                downlinkMessageController = loader.getController();
-                downlinkMessageController.init(this, viewModelFactory.getUplinkMessageViewModel(), root);
-            }
-            catch( Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            downlinkMessageController.reset();;
-        }
-
-        return downlinkMessageController.getRoot();
     }
 }
 

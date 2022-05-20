@@ -24,10 +24,11 @@ public class DownlinkMessageController {
     public Button downlink_queue_button;
 
     private UplinkMessageViewModel uplinkMessageViewModel;
+    private Region root;
 
     public void init(ViewHandler viewHandler, UplinkMessageViewModel uplinkMessageViewModel, Region root) {
         this.uplinkMessageViewModel = uplinkMessageViewModel;
-
+        this.root = root;
 
         uplinkMessageViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
             @Override
@@ -57,16 +58,8 @@ public class DownlinkMessageController {
         uplinkMessageViewModel.sendDownlinkMessage(downlink_eui.getText(),Integer.parseInt(downlink_port.getText()),downlink_ack.isSelected(), downlink_payload.getText(), Integer.parseInt(downlink_prio.getText()));
     }
 
-    public void reset() {
-
-    }
-
     public Region getRoot() {
         return root;
-    }
-
-    public void showView() {
-
     }
 }
 
