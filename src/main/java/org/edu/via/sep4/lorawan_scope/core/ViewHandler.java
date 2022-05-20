@@ -28,7 +28,7 @@ public record ViewHandler(Stage stage, ViewModelFactory viewModelFactory) {
             stage.setTitle("LoRaWAN IoT Message Scope");
         }
 
-       // Image icon = new Image("zsrc/main/resources/org/edu/via/sep4/lorawan_scope/view/icons8-analyze-24.png");
+       //Image icon = new Image(getClass().getResourceAsStream("application.png"));
        // stage.getIcons().add(icon);
 
         scene = new Scene(root);
