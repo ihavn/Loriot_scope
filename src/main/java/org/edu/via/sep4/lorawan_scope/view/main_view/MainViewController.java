@@ -32,18 +32,18 @@ public class MainViewController {
     private TableColumn<UplinkMessageView, String> portCol;
     @FXML
     private Pane downlinkPane;
-    private UplinkMessageViewModel uplinkMessageViewModel;
+    private UplinkViewModel uplinkViewModel;
     @FXML
     private DownlinkViewController down_link_viewController;
     private ViewHandler viewHandler;
     private Region root;
 
-    public void init(ViewHandler viewHandler, UplinkMessageViewModel uplinkMessageViewModel, Region root) {
-        this.uplinkMessageViewModel = uplinkMessageViewModel;
+    public void init(ViewHandler viewHandler, UplinkViewModel uplinkViewModel, Region root) {
+        this.uplinkViewModel = uplinkViewModel;
         this.viewHandler = viewHandler;
         this.root = root;
 
-        down_link_viewController.init(viewHandler, uplinkMessageViewModel, root);
+        down_link_viewController.init(viewHandler, uplinkViewModel, root);
 
         devEUICol.setCellValueFactory(cellData -> cellData.getValue().getDevEUIProperty());
         fcntUpCol.setCellValueFactory(cellData -> cellData.getValue().getFcntUpProperty());
@@ -51,15 +51,15 @@ public class MainViewController {
         localTimeCol.setCellValueFactory(cellData -> cellData.getValue().getLocalTimeProperty());
         portCol.setCellValueFactory(cellData -> cellData.getValue().getPortProperty());
 
-        uplinkDataTable.setItems(uplinkMessageViewModel.getUplinkTable());
+        uplinkDataTable.setItems(uplinkViewModel.getUplinkTable());
 
-        url_field.setText(uplinkMessageViewModel.getWebsocketURL());
+        url_field.setText(uplinkViewModel.getWebsocketURL());
 
         listenToWebsocketConnect();
     }
 
     private void listenToWebsocketConnect() {
-        uplinkMessageViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
+        uplinkViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 Platform.runLater(() -> handleConnected());
@@ -74,10 +74,10 @@ public class MainViewController {
 
     public void connect(ActionEvent actionEvent) {
         if (remember_url.isSelected()) {
-            uplinkMessageViewModel.storeWebscocketURL(url_field.getCharacters().toString());
+            uplinkViewModel.storeWebscocketURL(url_field.getCharacters().toString());
         }
 
-        uplinkMessageViewModel.connectToWebSocket(url_field.getCharacters().toString());
+        uplinkViewModel.connectToWebSocket(url_field.getCharacters().toString());
     }
 
     public void reset() {}

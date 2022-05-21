@@ -1,24 +1,24 @@
-package org.edu.via.sep4.lorawan_scope.model;
+package org.edu.via.sep4.lorawan_scope.model.uplink_model;
 
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public interface LoRaWANMessageHandlerModel {
+public interface UplinkModel {
     void addListener(String name, PropertyChangeListener listener);
 
-    void addUplinkMessage(UplinkMessageDataModel uplinkMessage);
+    void addUplinkMessage(UplinkData uplinkMessage);
 
-    UplinkMessageDataModel getUplinkMessage(int index);
+    UplinkData getUplinkMessage(int index);
 
-    ArrayList<UplinkMessageDataModel> getUplinkMessages();
+    ArrayList<UplinkData> getUplinkMessages();
 
-    public String getStoredWebsocketURL();
+    String getStoredWebsocketURL();
 
-    public void storeWebscocketURL(String url);
+    void storeWebscocketURL(String url);
 
-    public void connectToWebSocket(String url);
+    void connectToWebSocket(String url);
 
-    public void sendDownLinkMessage(String devEUI, int port, boolean ack, String payload, int priority);
+    void sendDownLinkMessage(String devEUI, int port, boolean ack, String payload, int priority);
 
     void websocketConnected();
 }

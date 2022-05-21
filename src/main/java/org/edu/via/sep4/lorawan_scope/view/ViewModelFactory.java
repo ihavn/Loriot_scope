@@ -1,20 +1,20 @@
 package org.edu.via.sep4.lorawan_scope.view;
 
-import org.edu.via.sep4.lorawan_scope.core.ModelFactory;
-import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkMessageViewModel;
+import org.edu.via.sep4.lorawan_scope.model.ModelFactory;
+import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkViewModel;
 public class ViewModelFactory {
     private final ModelFactory modelFactory;
-    private UplinkMessageViewModel uplinkMessageViewModel;
+    private UplinkViewModel uplinkViewModel;
     //private DownLinkViewModel downlinkViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory) {
         this.modelFactory=modelFactory;
     }
 
-    public UplinkMessageViewModel getUplinkMessageViewModel() {
-        if (uplinkMessageViewModel == null) {
-            uplinkMessageViewModel = new UplinkMessageViewModel(modelFactory.getUplinkMessageModel());
+    public UplinkViewModel getUplinkMessageViewModel() {
+        if (uplinkViewModel == null) {
+            uplinkViewModel = new UplinkViewModel(modelFactory.getUplinkModel());
         }
-        return uplinkMessageViewModel;
+        return uplinkViewModel;
     }
 }

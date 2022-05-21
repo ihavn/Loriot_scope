@@ -1,4 +1,4 @@
-package org.edu.via.sep4.lorawan_scope.core;
+package org.edu.via.sep4.lorawan_scope.model;
 
 import org.edu.via.sep4.lorawan_scope.model.downlink_model.DownlinkModel;
 import org.edu.via.sep4.lorawan_scope.model.downlink_model.DownlinkModelImpl;
@@ -13,12 +13,12 @@ public class ModelFactory {
     private LoRaWANHandler loRaWANHandler;
 
     public UplinkModel getUplinkModel() {
-        if(uplinkModel == null) uplinkModel = new UplinkModelImpl();
+        if(uplinkModel == null) uplinkModel = new UplinkModelImpl(this);
         return uplinkModel;
     }
 
     public DownlinkModel getDownlinkModel() {
-        if(downlinkModel == null) downlinkModel = new DownlinkModelImpl();
+        if(downlinkModel == null) downlinkModel = new DownlinkModelImpl(this);
         return downlinkModel;
     }
 

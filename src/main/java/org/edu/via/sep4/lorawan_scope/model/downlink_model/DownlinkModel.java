@@ -1,5 +1,5 @@
-package org.edu.via.sep4.lorawan_scope.model;
+package org.edu.via.sep4.lorawan_scope.model.downlink_model;
 
-public interface DownlinkMessageHandlerModel {
-    public void sendDownLinkMessage(String devEUI, int port, boolean ack, String payload);
+public interface DownlinkModel {
+    void sendDownLinkMessage(String devEUI, int port, boolean ack, String payload);
 }

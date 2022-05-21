@@ -1,4 +1,4 @@
-package org.edu.via.sep4.lorawan_scope.model.lorawan;
+package org.edu.via.sep4.lorawan_scope.model.lorawan_model;
 
 import java.net.URI;
 import java.net.http.HttpClient;

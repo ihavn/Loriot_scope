@@ -1,4 +1,4 @@
-package org.edu.via.sep4.lorawan_scope.model.lorawan;
+package org.edu.via.sep4.lorawan_scope.model.lorawan_model;
 
 import org.json.JSONObject;
 
@@ -18,7 +18,7 @@ public record GetCache(LoRaWANHandlerImpl loRaWANHandlerImpl) implements Runnabl
             jsonObject.put("page", 1);
             jsonObject.put("perPage", 20);
 
-            System.out.println(jsonObject.toString());
+            System.out.println(jsonObject);
             loRaWANHandlerImpl.sendDownLinkMessage(jsonObject.toString());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

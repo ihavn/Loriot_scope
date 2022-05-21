@@ -1,6 +1,6 @@
-package org.edu.via.sep4.lorawan_scope.model;
+package org.edu.via.sep4.lorawan_scope.model.uplink_model;
 
-public interface UplinkMessageDataModel {
+public interface UplinkData {
     String devEUI();
     String localTime();
     String fcntUp();

@@ -1,7 +1,8 @@
-package org.edu.via.sep4.lorawan_scope.model;
+package org.edu.via.sep4.lorawan_scope.model.uplink_model;
 
-import org.edu.via.sep4.lorawan_scope.model.lorawan.LoRaWANHandler;
-import org.edu.via.sep4.lorawan_scope.model.lorawan.LoRaWANHandlerImpl;
+import org.edu.via.sep4.lorawan_scope.model.ModelFactory;
+import org.edu.via.sep4.lorawan_scope.model.lorawan_model.LoRaWANHandler;
+import org.edu.via.sep4.lorawan_scope.model.lorawan_model.LoRaWANHandlerImpl;
 import org.json.JSONObject;
 
 import java.beans.PropertyChangeListener;
@@ -13,13 +14,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LoRaWANMessageHandlerModelImpl implements LoRaWANMessageHandlerModel {
+public class UplinkModelImpl implements UplinkModel {
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-    private final ArrayList<UplinkMessageDataModel> uplinkMessages = new ArrayList<>();
+    private final ArrayList<UplinkData> uplinkMessages = new ArrayList<>();
     private final LoRaWANHandler loRaWanHandler;
 
-    public LoRaWANMessageHandlerModelImpl() {
-        this.loRaWanHandler = new LoRaWANHandlerImpl(this);
+    public UplinkModelImpl(ModelFactory modelFactory) {
+        this.loRaWanHandler = modelFactory.getLoRaWANHandler();
     }
 
     @Override
@@ -33,18 +34,18 @@ public class LoRaWANMessageHandlerModelImpl implements LoRaWANMessageHandlerMode
     }
 
     @Override
-    public void addUplinkMessage(UplinkMessageDataModel uplinkMessage) {
+    public void addUplinkMessage(UplinkData uplinkMessage) {
             uplinkMessages.add(uplinkMessage);
             changeSupport.firePropertyChange("Add", "", uplinkMessages.size() - 1);
     }
 
     @Override
-    public UplinkMessageDataModel getUplinkMessage(int index) {
+    public UplinkData getUplinkMessage(int index) {
         return uplinkMessages.get(index);
     }
 
     @Override
-    public ArrayList<UplinkMessageDataModel> getUplinkMessages() {
+    public ArrayList<UplinkData> getUplinkMessages() {
         return uplinkMessages;
     }
 

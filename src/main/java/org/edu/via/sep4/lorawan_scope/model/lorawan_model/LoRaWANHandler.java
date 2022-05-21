@@ -1,6 +1,6 @@
-package org.edu.via.sep4.lorawan_scope.model.lorawan;
+package org.edu.via.sep4.lorawan_scope.model.lorawan_model;
 
 public interface LoRaWANHandler {
-    public void connectToWebSocket(String url);
-    public void sendDownLinkMessage(String json);
+    void connectToWebSocket(String url);
+    void sendDownLinkMessage(String json);
 }

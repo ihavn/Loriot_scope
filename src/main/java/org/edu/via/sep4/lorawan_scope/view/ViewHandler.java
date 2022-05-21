@@ -2,6 +2,7 @@ package org.edu.via.sep4.lorawan_scope.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.edu.via.sep4.lorawan_scope.view.main_view.MainViewController;
@@ -9,14 +10,14 @@ import org.edu.via.sep4.lorawan_scope.view.main_view.MainViewController;
 import java.io.IOException;
 
 public class ViewHandler {
-    private Scene currentScene;
+    private final Scene currentScene;
     private Stage primaryStage;
 
-    private ViewModelFactory viewModelFactory;
+    private final ViewModelFactory viewModelFactory;
 
     private MainViewController mainViewController;
 
-    public ViewHandler( ViewModelFactory viewModelFactory) {
+    public ViewHandler(ViewModelFactory viewModelFactory) {
         this.viewModelFactory = viewModelFactory;
         this.currentScene = new Scene(new Region());
     }
@@ -41,29 +42,12 @@ public class ViewHandler {
             title += root.getUserData();
         }
 
+        Image icon = new Image(getClass().getResourceAsStream("icons8-analyze-24.png"));
+        primaryStage.getIcons().add(icon);
         primaryStage.setTitle(title);
         primaryStage.setScene(currentScene);
         primaryStage.show();
     }
-    /*
-        if ("UplinkMessage".equals(viewToOpen)) {
-            loader.setLocation(getClass().getResource("/org/edu/via/sep4/lorawan_scope/view/lorawan_message/MainView.fxml"));
-            root = loader.load();
-            LoRaWANMessageController view = loader.getController();
-            view.init(viewModelFactory.getUplinkMessageViewModel());
-            stage.setTitle("LoRaWAN IoT Message Scope");
-        }
-
-
-
-       // Image icon = new Image("org/edu/via/sep4/lorawan_scope/view/icons8-analyze-24.png");
-       // stage.getIcons().add(icon);
-
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-     */
 
     public void closeView() {
         primaryStage.close();

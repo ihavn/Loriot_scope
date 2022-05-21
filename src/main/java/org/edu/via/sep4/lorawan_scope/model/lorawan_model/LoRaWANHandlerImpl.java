@@ -1,15 +1,15 @@
-package org.edu.via.sep4.lorawan_scope.model.lorawan;
+package org.edu.via.sep4.lorawan_scope.model.lorawan_model;
 
-import org.edu.via.sep4.lorawan_scope.model.UplinkMessageDataModel;
-import org.edu.via.sep4.lorawan_scope.model.LoRaWANMessageHandlerModel;
+import org.edu.via.sep4.lorawan_scope.model.ModelFactory;
+import org.edu.via.sep4.lorawan_scope.model.uplink_model.UplinkData;
 
 public class LoRaWANHandlerImpl implements LoRaWANHandler {
     private WebsocketClient websocketClient;
-    private LoRaWANMessageHandler loRaWANMessageHandler;
-    private UplinkMessageDataModel uplinkMessageDataModel;
+    private final LoRaWANMessageHandler loRaWANMessageHandler;
+    private UplinkData uplinkData;
 
-    public LoRaWANHandlerImpl(LoRaWANMessageHandlerModel loRaWANMessageHandlerModel) {
-        loRaWANMessageHandler = new LoRaWANMessageHandler(loRaWANMessageHandlerModel);
+    public LoRaWANHandlerImpl(ModelFactory modelFactory) {
+        loRaWANMessageHandler = modelFactory.getLoRaWANHandler();
     }
 
     public void connectToWebSocket(String url) {

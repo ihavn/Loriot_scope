@@ -9,7 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
-import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkMessageViewModel;
+import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkViewModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -23,14 +23,14 @@ public class DownlinkViewController {
     public TextField downlink_prio;
     public Button downlink_queue_button;
 
-    private UplinkMessageViewModel uplinkMessageViewModel;
+    private UplinkViewModel uplinkViewModel;
     private Region root;
 
-    public void init(ViewHandler viewHandler, UplinkMessageViewModel uplinkMessageViewModel, Region root) {
-        this.uplinkMessageViewModel = uplinkMessageViewModel;
+    public void init(ViewHandler viewHandler, UplinkViewModel uplinkViewModel, Region root) {
+        this.uplinkViewModel = uplinkViewModel;
         this.root = root;
 
-        uplinkMessageViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
+        uplinkViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 Platform.runLater(() -> handleConnected());
@@ -55,7 +55,7 @@ public class DownlinkViewController {
             alert.showAndWait();
         }
 
-        uplinkMessageViewModel.sendDownlinkMessage(downlink_eui.getText(),Integer.parseInt(downlink_port.getText()),downlink_ack.isSelected(), downlink_payload.getText(), Integer.parseInt(downlink_prio.getText()));
+        uplinkViewModel.sendDownlinkMessage(downlink_eui.getText(),Integer.parseInt(downlink_port.getText()),downlink_ack.isSelected(), downlink_payload.getText(), Integer.parseInt(downlink_prio.getText()));
     }
 
     public Region getRoot() {

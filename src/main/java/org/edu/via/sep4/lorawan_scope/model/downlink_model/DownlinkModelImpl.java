@@ -1,13 +1,14 @@
-package org.edu.via.sep4.lorawan_scope.model;
+package org.edu.via.sep4.lorawan_scope.model.downlink_model;
 
-import org.edu.via.sep4.lorawan_scope.model.lorawan.LoRaWANHandler;
+import org.edu.via.sep4.lorawan_scope.model.ModelFactory;
+import org.edu.via.sep4.lorawan_scope.model.lorawan_model.LoRaWANHandler;
 import org.json.JSONObject;
 
-public class DownlinkMessageHandlerModelImpl implements DownlinkMessageHandlerModel {
+public class DownlinkModelImpl implements DownlinkModel {
     private final LoRaWANHandler loRaWANHandler;
 
-    public DownlinkMessageHandlerModelImpl(LoRaWANHandler loRaWANHandler) {
-        this.loRaWANHandler = loRaWANHandler;
+    public DownlinkModelImpl(ModelFactory modelFactory) {
+        this.loRaWANHandler = modelFactory.getLoRaWANHandler();
     }
 
     @Override
