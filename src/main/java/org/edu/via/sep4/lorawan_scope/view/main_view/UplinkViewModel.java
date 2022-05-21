@@ -5,8 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.edu.via.sep4.lorawan_scope.model.LoRaWANMessageHandlerModel;
-import org.edu.via.sep4.lorawan_scope.model.UplinkMessageDataModel;
+import org.edu.via.sep4.lorawan_scope.model.uplink_model.UplinkModel;
+import org.edu.via.sep4.lorawan_scope.model.uplink_model.UplinkData;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -14,10 +14,10 @@ import java.beans.PropertyChangeSupport;
 
 public class UplinkMessageViewModel {
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-    private LoRaWANMessageHandlerModel model;
+    private final UplinkModel model;
 
-    private ObservableList<UplinkMessageView> uplinkTable;
-    private StringProperty websocketURL;
+    private final ObservableList<UplinkMessageView> uplinkTable;
+    private final StringProperty websocketURL;
 
     private boolean websocketConnected;
 
@@ -25,11 +25,11 @@ public class UplinkMessageViewModel {
         return uplinkTable;
     }
 
-    private void populateTableRow(UplinkMessageDataModel u) {
+    private void populateTableRow(UplinkData u) {
         uplinkTable.add(0, new UplinkMessageView(u.devEUI(), u.localTime(), u.fcntUp(), u.port(), u.payload()));
     }
 
-    public UplinkMessageViewModel(LoRaWANMessageHandlerModel model) {
+    public UplinkMessageViewModel(UplinkModel model) {
         this.model = model;
         uplinkTable = FXCollections.observableArrayList();
         websocketURL = new SimpleStringProperty();
