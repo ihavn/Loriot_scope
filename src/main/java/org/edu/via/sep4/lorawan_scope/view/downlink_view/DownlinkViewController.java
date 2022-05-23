@@ -1,4 +1,4 @@
-package org.edu.via.sep4.lorawan_scope.view.downlink_message_view;
+package org.edu.via.sep4.lorawan_scope.view.downlink_view;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -9,7 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
-import org.edu.via.sep4.lorawan_scope.view.main_view.UplinkViewModel;
+import org.edu.via.sep4.lorawan_scope.view.ViewModelFactory;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -23,14 +23,16 @@ public class DownlinkViewController {
     public TextField downlink_prio;
     public Button downlink_queue_button;
 
-    private UplinkViewModel uplinkViewModel;
+    private ViewModelFactory viewModelFactory;
+    private DownlinkViewModel downlinkViewModel;
     private Region root;
 
-    public void init(ViewHandler viewHandler, UplinkViewModel uplinkViewModel, Region root) {
-        this.uplinkViewModel = uplinkViewModel;
+    public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory, Region root) {
+        this.viewModelFactory = viewModelFactory;
+        this.downlinkViewModel  = viewModelFactory.getDownlinkViewModel();
         this.root = root;
 
-        uplinkViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
+        downlinkViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 Platform.runLater(() -> handleConnected());
@@ -55,7 +57,7 @@ public class DownlinkViewController {
             alert.showAndWait();
         }
 
-        uplinkViewModel.sendDownlinkMessage(downlink_eui.getText(),Integer.parseInt(downlink_port.getText()),downlink_ack.isSelected(), downlink_payload.getText(), Integer.parseInt(downlink_prio.getText()));
+        downlinkViewModel.sendDownlinkMessage(downlink_eui.getText(),Integer.parseInt(downlink_port.getText()),downlink_ack.isSelected(), downlink_payload.getText(), Integer.parseInt(downlink_prio.getText()));
     }
 
     public Region getRoot() {

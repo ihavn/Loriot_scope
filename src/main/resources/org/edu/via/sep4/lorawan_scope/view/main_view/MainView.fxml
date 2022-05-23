@@ -40,7 +40,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <Button fx:id="connect_button" mnemonicParsing="false" onAction="#connect" prefHeight="25.0" prefWidth="95.0" text="Connect" />
+                  <Button fx:id="connect_button" mnemonicParsing="false" onAction="#connect_button_pressed" prefHeight="25.0" prefWidth="95.0" text="Connect" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -49,7 +49,7 @@
             <Separator prefWidth="200.0" />
             <Pane fx:id="downlink_pane" prefWidth="200.0">
                <children>
-                    <fx:include fx:id="down_link_view" source="../downlink_message_view/DownLinkView.fxml" />
+                    <fx:include fx:id="down_link_view" source="../downlink_view/DownLinkView.fxml" />
                </children>
             </Pane>
               <TableView fx:id="uplinkDataTable" prefHeight="500.0" prefWidth="1000.0">

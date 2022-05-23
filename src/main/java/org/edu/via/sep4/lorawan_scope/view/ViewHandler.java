@@ -62,7 +62,7 @@ public class ViewHandler {
                 loader.setLocation(getClass().getResource(fxmlFile));
                 root = loader.load();
                 mainViewController = loader.getController();
-                mainViewController.init(this, viewModelFactory.getUplinkMessageViewModel(), root);
+                mainViewController.init(this, viewModelFactory, root);
             } catch (Exception e) {
                 e.printStackTrace();
             }

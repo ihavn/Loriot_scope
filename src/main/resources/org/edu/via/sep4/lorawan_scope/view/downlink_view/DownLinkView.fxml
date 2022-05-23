@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.edu.via.sep4.lorawan_scope.view.downlink_message_view.DownlinkViewController">
+            fx:controller="org.edu.via.sep4.lorawan_scope.view.downlink_view.DownlinkViewController">
     <BorderPane prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;">
         <top>
             <Label text="Down Link Messages" BorderPane.alignment="CENTER_LEFT">
