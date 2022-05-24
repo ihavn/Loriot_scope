@@ -16,11 +16,10 @@ import java.beans.PropertyChangeSupport;
 public class UplinkViewModel {
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private final ObservableList<UplinkView> uplinkTable;
-    private final StringProperty webSocketURL;
 
     private boolean webSocketConnected;
 
-    private UplinkModel uplinkModel;
+    private final UplinkModel uplinkModel;
     public ObservableList<UplinkView> getUplinkTable() {
         return uplinkTable;
     }
@@ -33,7 +32,7 @@ public class UplinkViewModel {
         this.uplinkModel = modelFactory.getUplinkModel();
 
         uplinkTable = FXCollections.observableArrayList();
-        webSocketURL = new SimpleStringProperty();
+        StringProperty webSocketURL = new SimpleStringProperty();
 
         listenToUplinkMessages();
         listenToLoRaWAN();

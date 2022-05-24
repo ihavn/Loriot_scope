@@ -27,7 +27,7 @@ public class ViewHandler {
         openView("MainView");
     }
 
-    public void openView(String viewToOpen) throws IOException {
+    public void openView(String viewToOpen) {
         Region root = null;
 
         switch (viewToOpen) {
@@ -42,7 +42,7 @@ public class ViewHandler {
             title += root.getUserData();
         }
 
-        Image icon = new Image(getClass().getResourceAsStream("icons8-analyze-24.png"));
+        Image icon = new Image(getClass().getResourceAsStream("antenna.png"));
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle(title);
         primaryStage.setScene(currentScene);

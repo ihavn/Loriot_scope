@@ -6,11 +6,9 @@ import org.edu.via.sep4.lorawan_scope.model.lorawan_model.LoriotModel;
 import java.beans.PropertyChangeListener;
 
 public class MainViewModel {
-    private final ModelFactory modelFactory;
     private final LoriotModel loriotModel;
 
     public MainViewModel(ModelFactory modelFactory) {
-        this.modelFactory = modelFactory;
         this.loriotModel = modelFactory.getLoriotModel();
     }
 

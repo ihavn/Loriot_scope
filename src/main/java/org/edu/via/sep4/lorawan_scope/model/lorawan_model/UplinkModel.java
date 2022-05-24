@@ -5,7 +5,7 @@ import java.beans.PropertyChangeListener;
 public interface UplinkModel {
     void addListener(String name, PropertyChangeListener listener);
 
-  //  void addUplinkMessage(UplinkMessageData uplinkMessage);
+    //void addUplinkMessage(UplinkMessageData uplinkMessage);
 
     LoriotMessageData getUplinkMessage(int index);
     // void websocketConnected();

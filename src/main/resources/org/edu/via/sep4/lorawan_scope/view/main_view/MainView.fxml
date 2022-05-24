@@ -27,7 +27,7 @@
                         <Insets top="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="url_field" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="730.0">
+                  <TextField fx:id="urlField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="730.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -35,32 +35,28 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <CheckBox fx:id="remember_url" mnemonicParsing="false" prefHeight="17.0" prefWidth="100.0" selected="true" text="Remember">
+                  <CheckBox fx:id="rememberUrl" mnemonicParsing="false" prefHeight="17.0" prefWidth="100.0" selected="true" text="Remember">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <Button fx:id="connect_button" mnemonicParsing="false" onAction="#connect_button_pressed" prefHeight="25.0" prefWidth="95.0" text="Connect" />
+                  <Button fx:id="connectButton" mnemonicParsing="false" onAction="#connectButtonPressed" prefHeight="25.0" prefWidth="95.0" text="Connect" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
             <Separator prefWidth="200.0" />
-            <Pane fx:id="downlink_pane" prefWidth="200.0">
+            <Pane fx:id="downlinkPane" prefWidth="200.0">
                <children>
-                    <fx:include fx:id="down_link_view" source="../downlink_view/DownLinkView.fxml" />
+                    <fx:include fx:id="downlinkView" source="../downlink_view/DownLinkView.fxml" />
                </children>
             </Pane>
-              <TableView fx:id="uplinkDataTable" prefHeight="500.0" prefWidth="1000.0">
-                  <columns>
-                      <TableColumn fx:id="devEUICol" prefWidth="159.0" text="Device EUI" />
-                      <TableColumn fx:id="localTimeCol" prefWidth="163.0" text="Local time" />
-                      <TableColumn fx:id="portCol" prefWidth="57.0" style="-fx-alignment: center;" text="Port" />
-                      <TableColumn fx:id="fcntUpCol" prefWidth="85.0" style="-fx-alignment: center;" text="FCntUp" />
-                      <TableColumn fx:id="payloadCol" prefWidth="531.0" text="Payload" />
-                  </columns>
-              </TableView>
+              <Pane fx:id="uplinkPane" prefWidth="200.0">
+                  <children>
+                      <fx:include fx:id="uplinkView" source="../uplink_view/UplinkView.fxml" />
+                  </children>
+              </Pane>
             <Label prefHeight="17.0" prefWidth="994.0" text="VIA University College - Software Technology Engineering - 2022 - Ib Havn (IHA)">
                <font>
                   <Font name="System Italic" size="12.0" />

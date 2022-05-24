@@ -23,26 +23,26 @@
                             <Insets left="2.0" top="4.0" />
                         </padding>
                     </Label>
-                    <TextField fx:id="downlink_eui" disable="true" prefHeight="25.0" prefWidth="133.0" />
+                    <TextField fx:id="downlinkEui" disable="true" prefHeight="25.0" prefWidth="133.0" />
                     <Label prefHeight="21.0" prefWidth="42.0" text="Port:">
                         <padding>
                             <Insets left="5.0" top="4.0" />
                         </padding>
                     </Label>
-                    <TextField fx:id="downlink_port" disable="true" prefHeight="25.0" prefWidth="34.0" />
+                    <TextField fx:id="downlinkPort" disable="true" prefHeight="25.0" prefWidth="34.0" />
                     <Label prefHeight="21.0" prefWidth="63.0" text="Payload:">
                         <padding>
                             <Insets left="5.0" top="4.0" />
                         </padding>
                     </Label>
-                    <TextField fx:id="downlink_payload" disable="true" prefHeight="25.0" prefWidth="403.0" />
+                    <TextField fx:id="downlinkPayload" disable="true" prefHeight="25.0" prefWidth="403.0" />
                     <Label prefHeight="21.0" prefWidth="38.0" text="Prio:">
                         <padding>
                             <Insets left="5.0" top="4.0" />
                         </padding>
                     </Label>
-                    <TextField fx:id="downlink_prio" disable="true" prefHeight="25.0" prefWidth="35.0" text="0" />
-                    <CheckBox fx:id="downlink_ack" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" text="Ack">
+                    <TextField fx:id="downlinkPrio" disable="true" prefHeight="25.0" prefWidth="35.0" text="0" />
+                    <CheckBox fx:id="downlinkAck" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="66.0" text="Ack">
                         <HBox.margin>
                             <Insets left="8.0" />
                         </HBox.margin>
@@ -54,7 +54,7 @@
             </HBox>
         </center>
         <right>
-            <Button fx:id="downlink_queue_button" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#downlink_queue_button" prefHeight="25.0" prefWidth="75.0" text="Queue" BorderPane.alignment="TOP_CENTER" />
+            <Button fx:id="downlinkQueueButton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#downlinkQueueButtonPressed" prefHeight="25.0" prefWidth="75.0" text="Queue" BorderPane.alignment="TOP_CENTER" />
         </right>
         <opaqueInsets>
             <Insets />

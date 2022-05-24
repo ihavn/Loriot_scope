@@ -8,37 +8,37 @@ import javafx.scene.layout.Region;
 import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
 import org.edu.via.sep4.lorawan_scope.view.ViewModelFactory;
 import org.edu.via.sep4.lorawan_scope.view.downlink_view.DownlinkViewController;
+import org.edu.via.sep4.lorawan_scope.view.uplink_view.UplinkViewController;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class MainViewController {
     @FXML
-    public TextField url_field;
+    public TextField urlField;
     @FXML
-    public Button connect_button;
-    public CheckBox remember_url;
-
+    public Button connectButton;
+    public CheckBox rememberUrl;
     private MainViewModel mainViewModel;
     @FXML
-    private DownlinkViewController down_link_viewController;
-    private ViewHandler viewHandler;
+    private DownlinkViewController downlinkViewController;
+    @FXML
+    private UplinkViewController uplinkViewController;
     private Region root;
 
     public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory, Region root) {
         this.mainViewModel = viewModelFactory.getMainViewModel();
-        this.viewHandler = viewHandler;
         this.root = root;
 
-        down_link_viewController.init(viewHandler, viewModelFactory, root);
+        downlinkViewController.init(viewHandler, viewModelFactory, root);
+        uplinkViewController.init(viewHandler, viewModelFactory, root);
 
+        urlField.setText(mainViewModel.getStoredWebSocketURL());
 
-        url_field.setText(mainViewModel.getStoredWebSocketURL());
-
-        listenToWebsocketConnect();
+        listenToWebSocketConnect();
     }
 
-    private void listenToWebsocketConnect() {
+    private void listenToWebSocketConnect() {
         mainViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -46,21 +46,22 @@ public class MainViewController {
             }
 
             private void handleConnected() {
-                connect_button.setDisable(true);
-                url_field.setDisable(true);
+                connectButton.setDisable(true);
+                urlField.setDisable(true);
             }
         });
     }
 
-    public void connect_button_pressed(ActionEvent actionEvent) {
-        if (remember_url.isSelected()) {
-            mainViewModel.storeWebScocketURL(url_field.getCharacters().toString());
+    public void connectButtonPressed(ActionEvent actionEvent) {
+        if (rememberUrl.isSelected()) {
+            mainViewModel.storeWebScocketURL(urlField.getCharacters().toString());
         }
 
-        mainViewModel.connectToWebSocket(url_field.getCharacters().toString());
+        mainViewModel.connectToWebSocket(urlField.getCharacters().toString());
     }
 
-    public void reset() {}
+    public void reset() {
+    }
 
     public Region getRoot() {
         return root;

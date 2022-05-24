@@ -16,22 +16,24 @@ import java.beans.PropertyChangeListener;
 
 public class DownlinkViewController {
     @FXML
-    public TextField downlink_eui;
-    public TextField downlink_port;
-    public TextField downlink_payload;
-    public CheckBox downlink_ack;
-    public TextField downlink_prio;
-    public Button downlink_queue_button;
+    public TextField downlinkEui;
+    public TextField downlinkPort;
+    public TextField downlinkPayload;
+    public CheckBox downlinkAck;
+    public TextField downlinkPrio;
+    public Button downlinkQueueButton;
 
-    private ViewModelFactory viewModelFactory;
     private DownlinkViewModel downlinkViewModel;
     private Region root;
 
     public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory, Region root) {
-        this.viewModelFactory = viewModelFactory;
         this.downlinkViewModel  = viewModelFactory.getDownlinkViewModel();
         this.root = root;
 
+        listenToWebSocketConnect();
+    }
+
+    private void listenToWebSocketConnect() {
         downlinkViewModel.addListener("WebsocketConnected", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -40,24 +42,24 @@ public class DownlinkViewController {
 
             private void handleConnected() {
 
-                downlink_eui.setDisable(false);
-                downlink_payload.setDisable(false);
-                downlink_port.setDisable(false);
-                downlink_ack.setDisable(false);
-                downlink_prio.setDisable(false);
-                downlink_queue_button.setDisable(false);
+                downlinkEui.setDisable(false);
+                downlinkPayload.setDisable(false);
+                downlinkPort.setDisable(false);
+                downlinkAck.setDisable(false);
+                downlinkPrio.setDisable(false);
+                downlinkQueueButton.setDisable(false);
             }
         });
     }
 
-    public void downlink_queue_button(ActionEvent actionEvent) {
-        if (downlink_eui.getText().equals("") || downlink_port.getText().equals("") || downlink_payload.getText().equals("")) {
+    public void downlinkQueueButtonPressed(ActionEvent actionEvent) {
+        if (downlinkEui.getText().equals("") || downlinkPort.getText().equals("") || downlinkPayload.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Down-link fields must be filled out!");
             alert.showAndWait();
         }
 
-        downlinkViewModel.sendDownlinkMessage(downlink_eui.getText(),Integer.parseInt(downlink_port.getText()),downlink_ack.isSelected(), downlink_payload.getText(), Integer.parseInt(downlink_prio.getText()));
+        downlinkViewModel.sendDownlinkMessage(downlinkEui.getText(),Integer.parseInt(downlinkPort.getText()), downlinkAck.isSelected(), downlinkPayload.getText(), Integer.parseInt(downlinkPrio.getText()));
     }
 
     public Region getRoot() {

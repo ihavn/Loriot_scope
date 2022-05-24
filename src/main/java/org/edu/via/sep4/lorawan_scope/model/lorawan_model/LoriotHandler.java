@@ -17,13 +17,12 @@ import java.util.Scanner;
 
 public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
     private WebSocketClient websocketClient;
-    private final UplinkMessageHandler uplinkMessageHandler;
     private final DownlinkMessageHandler downlinkMessageHandler;
 
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private final ArrayList<LoriotMessageData> loriotMessages = new ArrayList<>();
     public LoriotHandler() {
-        uplinkMessageHandler = new UplinkMessageHandler();
+        UplinkMessageHandler uplinkMessageHandler = new UplinkMessageHandler();
         downlinkMessageHandler = new DownlinkMessageHandler();
     }
 
@@ -59,7 +58,7 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
     public void connectToWebSocket(String url) {
         websocketClient = new WebSocketClient(this);
         websocketClient.connectToWebSocket(url);
-        LoriotCache getCash = new LoriotCache(this);
+        new LoriotCache(this);
     }
 
     @Override
@@ -85,7 +84,7 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
     void unpackLoRaWANMessage(String json) {
         JSONObject jo = new JSONObject(json);
         if (jo.getString("cmd").equals("rx")) {
-            loriotMessages.add(new LoriotMessageDataImpl(jo.getString("EUI"), tsToString(jo.getLong("ts")), Integer.toString(jo.getInt("fcnt")), Integer.toString(jo.getInt("port")), jo.getString("data")));
+            addLoriotMessage(jo.getString("EUI"), tsToString(jo.getLong("ts")), Integer.toString(jo.getInt("fcnt")), Integer.toString(jo.getInt("port")), jo.getString("data"));
         } else if (jo.getString("cmd").equals("cq")) {
             JSONArray jsonArray = jo.getJSONArray("cache");
             Object item;
@@ -94,7 +93,7 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
                 if (item instanceof JSONObject) {
                     jo = (JSONObject) item;
                     try {
-                        loriotMessages.add(new LoriotMessageDataImpl(jo.getString("EUI"), tsToString(jo.getLong("ts")), Integer.toString(jo.getInt("fcnt")), Integer.toString(jo.getInt("port")), jo.getString("data")));
+                        addLoriotMessage(jo.getString("EUI"), tsToString(jo.getLong("ts")), Integer.toString(jo.getInt("fcnt")), Integer.toString(jo.getInt("port")), jo.getString("data"));
                     } catch (JSONException e) {
                         System.out.println();
                     }
@@ -102,13 +101,19 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
             }
         } else if (jo.getString("cmd").equals("tx")) {
             if (jo.has("success")) {
-                loriotMessages.add(new LoriotMessageDataImpl(jo.getString("EUI"), "", "", "", jo.getString("data") + " (Enqueued for sending)"));
+                addLoriotMessage(jo.getString("EUI"), "", "", "", jo.getString("data") + " (Enqueued for sending)");
             } else {
-                loriotMessages.add(new LoriotMessageDataImpl(jo.getString("EUI"), "", "", "", jo.getString("error")));
+                addLoriotMessage(jo.getString("EUI"), "", "", "", jo.getString("error"));
             }
         } else if (jo.getString("cmd").equals("txd")) {
-            loriotMessages.add(new LoriotMessageDataImpl(jo.getString("EUI"), tsToString(jo.getLong("ts")), "", "", 	"(Enqueued data sent)"));
+            addLoriotMessage(jo.getString("EUI"), tsToString(jo.getLong("ts")), "", "", "(Enqueued data sent)");
         }
+
+    }
+
+    private void addLoriotMessage(String eui, String localTime, String fcnt, String port, String payload) {
+        loriotMessages.add(new LoriotMessageDataImpl(eui, localTime, fcnt, port, payload));
+        changeSupport.firePropertyChange("Add", "", loriotMessages.size() - 1);
     }
 
     private String tsToString(long ts) {
@@ -118,7 +123,7 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
     }
 
     void websocketConnected() {
-        //new LoriotCache();
+            changeSupport.firePropertyChange("WebsocketConnected", "", "Connect");
     }
 
     void sendDownLinkMessage(String json) {
