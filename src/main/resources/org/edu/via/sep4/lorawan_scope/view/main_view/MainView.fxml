@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.edu.via.sep4.lorawan_scope.view.main_view.MainViewController">
+   <children>
+       <VBox alignment="CENTER" spacing="20.0">
+           <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+           </padding>
+          <children>
+              <Label text="IoT Message Scope">
+                  <font>
+                      <Font name="System Bold" size="24.0" />
+                  </font>
+              </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="116.0" text="WEB-Socket URL:">
+                     <opaqueInsets>
+                        <Insets top="2.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="urlField" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="730.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <CheckBox fx:id="rememberUrl" mnemonicParsing="false" prefHeight="17.0" prefWidth="100.0" selected="true" text="Remember">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </CheckBox>
+                  <Button fx:id="connectButton" mnemonicParsing="false" onAction="#connectButtonPressed" prefHeight="25.0" prefWidth="95.0" text="Connect" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <Pane fx:id="downlinkPane" prefWidth="200.0">
+               <children>
+                    <fx:include fx:id="downlinkView" source="../downlink_view/DownLinkView.fxml" />
+               </children>
+            </Pane>
+              <Pane fx:id="uplinkPane" prefWidth="200.0">
+                  <children>
+                      <fx:include fx:id="uplinkView" source="../uplink_view/UplinkView.fxml" />
+                  </children>
+              </Pane>
+            <Label prefHeight="17.0" prefWidth="994.0" text="VIA University College - Software Technology Engineering - 2022 - Ib Havn (IHA)">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+          </children>
+       </VBox>
+   </children>
+</AnchorPane>

@@ -1,4 +1,4 @@
-package org.edu.via.sep4.lorawan_scope.model.lorawan;
+package org.edu.via.sep4.lorawan_scope.model.lorawan_model;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -9,22 +9,22 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
-public class WebsocketClient implements WebSocket.Listener {
+public class WebSocketClient implements WebSocket.Listener {
     private WebSocket server;
-    private final LoRaWANMessageHandler loRaWANMessageHandler;
+    private final LoriotHandler loriotHandler;
     private List<CharSequence> parts = new ArrayList<>();
     private CompletableFuture<?> accumulatedMessage = new CompletableFuture<>();
 
     // Send down-link message to device
     // Must be in Json format according to https://github.com/ihavn/IoT_Semester_project/blob/master/LORA_NETWORK_SERVER.md
-    public void sendDownLink(String jsonTelegram) {
+    public void sendDownLinkMessage(String jsonTelegram) {
         server.sendText(jsonTelegram, true);
     }
 
     // E.g. url: "wss://iotnet.teracom.dk/app?token=??????????????????????????????????????????????="
     // Substitute ????????????????? with the token you have been given
-    public WebsocketClient(LoRaWANMessageHandler loRaWANMessageHandler) {
-        this.loRaWANMessageHandler = loRaWANMessageHandler;
+    public WebSocketClient(LoriotHandler loriotHandler) {
+        this.loriotHandler = loriotHandler;
 
     }
 
@@ -40,7 +40,7 @@ public class WebsocketClient implements WebSocket.Listener {
         // This WebSocket will invoke onText, onBinary, onPing, onPong or onClose methods on the associated listener (i.e. receive methods) up to n more times
         webSocket.request(1);
         System.out.println("WebSocket Listener has been opened for requests.");
-        loRaWANMessageHandler.websocketConnected();
+        loriotHandler.websocketConnected();
     }
 
     //onError()
@@ -78,7 +78,7 @@ public class WebsocketClient implements WebSocket.Listener {
         webSocket.request(1);
         if (last) {
             System.out.println(String.join("", parts));  // Deligate to LaRaWANMessageHandler
-            loRaWANMessageHandler.unpackLoRaWANMessage(String.join("", parts));
+            loriotHandler.unpackLoRaWANMessage(String.join("", parts));
             parts = new ArrayList<>();
             accumulatedMessage.complete(null);
             CompletionStage<?> cf = accumulatedMessage;

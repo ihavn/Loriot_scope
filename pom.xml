@@ -53,7 +53,7 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/java/org/edu/via/sep4/lorawan_scope/view/lorawan_message</directory>
+                <directory>src/main/java/org/edu/via/sep4/lorawan_scope/view/main_view</directory>
                 <targetPath>target/classes/org/edu/via/sep4/lorawan_scope/view/uplink_message</targetPath>
                 <includes>
                     <include>*.fxml</include>
