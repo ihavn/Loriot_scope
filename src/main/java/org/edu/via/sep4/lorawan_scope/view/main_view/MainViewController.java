@@ -48,6 +48,7 @@ public class MainViewController {
             private void handleConnected() {
                 connectButton.setDisable(true);
                 urlField.setDisable(true);
+                rememberUrl.setDisable(true);
             }
         });
     }
