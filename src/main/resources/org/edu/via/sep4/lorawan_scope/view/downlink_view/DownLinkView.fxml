@@ -29,7 +29,7 @@
                             <Insets left="5.0" top="4.0" />
                         </padding>
                     </Label>
-                    <TextField fx:id="downlinkPort" disable="true" prefHeight="25.0" prefWidth="34.0" />
+                    <TextField fx:id="downlinkPort" disable="true" text="1" prefHeight="25.0" prefWidth="34.0" />
                     <Label prefHeight="21.0" prefWidth="63.0" text="Payload:">
                         <padding>
                             <Insets left="5.0" top="4.0" />
