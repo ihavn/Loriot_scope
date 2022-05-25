@@ -35,7 +35,7 @@ public class ViewHandler {
         }
 
         currentScene.setRoot(root);
-        String title = "";
+        String title = "IoT Message Scope";
         if (root.getUserData() != null) {
             title += root.getUserData();
         }
