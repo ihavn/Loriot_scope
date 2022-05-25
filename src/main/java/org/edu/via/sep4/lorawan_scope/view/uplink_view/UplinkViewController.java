@@ -1,15 +1,11 @@
 package org.edu.via.sep4.lorawan_scope.view.uplink_view;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
 import org.edu.via.sep4.lorawan_scope.view.ViewHandler;
 import org.edu.via.sep4.lorawan_scope.view.ViewModelFactory;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 public class UplinkViewController {
     @FXML
@@ -25,6 +21,7 @@ public class UplinkViewController {
     @FXML
     private TableColumn<UplinkView, String> portCol;
 
+    private Region root;
     private UplinkViewModel uplinkViewModel;
 
     public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory, Region root) {
@@ -36,5 +33,16 @@ public class UplinkViewController {
         portCol.setCellValueFactory(cellData -> cellData.getValue().getPortProperty());
 
         uplinkDataTable.setItems(uplinkViewModel.getUplinkTable());
+
+        this.root = root;
     }
+
+    public Region getRoot() {
+        return root;
+    }
+
+    public void reset() {
+    }
+
+
 }

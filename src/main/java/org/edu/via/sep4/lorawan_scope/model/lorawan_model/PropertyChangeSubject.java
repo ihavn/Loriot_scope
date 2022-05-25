@@ -2,8 +2,6 @@ package org.edu.via.sep4.lorawan_scope.model.lorawan_model;
 
 import java.beans.PropertyChangeListener;
 
-public interface DownlinkModel extends PropertyChangeSubject {
-    void sendDownLinkMessage(String devEUI, int port, boolean ack, String payload, int priority);
-
+public interface PropertyChangeSubject {
     void addListener(String name, PropertyChangeListener listener);
 }

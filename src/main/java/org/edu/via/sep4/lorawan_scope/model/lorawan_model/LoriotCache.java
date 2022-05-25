@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 public class LoriotCache implements Runnable {
     private final LoriotHandler loriotHandler;
+
     public LoriotCache(LoriotHandler loriotHandler) {
         this.loriotHandler = loriotHandler;
         Thread t = new Thread(this, "getCash");

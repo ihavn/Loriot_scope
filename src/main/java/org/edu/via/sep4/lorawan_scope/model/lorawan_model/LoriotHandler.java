@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -21,6 +20,7 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
 
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private final ArrayList<LoriotMessageData> loriotMessages = new ArrayList<>();
+
     public LoriotHandler() {
         UplinkMessageHandler uplinkMessageHandler = new UplinkMessageHandler();
         downlinkMessageHandler = new DownlinkMessageHandler();
@@ -37,7 +37,7 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
 
                 return url;
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -68,10 +68,9 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
 
     @Override
     public void addListener(String name, PropertyChangeListener listener) {
-        if(name == null) {
+        if (name == null) {
             changeSupport.addPropertyChangeListener(listener);
-        }
-        else {
+        } else {
             changeSupport.addPropertyChangeListener(name, listener);
         }
     }
@@ -123,7 +122,7 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
     }
 
     void websocketConnected() {
-            changeSupport.firePropertyChange("WebsocketConnected", "", "Connect");
+        changeSupport.firePropertyChange("WebsocketConnected", "", "Connect");
     }
 
     void sendDownLinkMessage(String json) {

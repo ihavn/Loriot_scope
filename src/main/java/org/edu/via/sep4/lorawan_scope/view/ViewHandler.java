@@ -7,8 +7,6 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.edu.via.sep4.lorawan_scope.view.main_view.MainViewController;
 
-import java.io.IOException;
-
 public class ViewHandler {
     private final Scene currentScene;
     private Stage primaryStage;
@@ -22,7 +20,7 @@ public class ViewHandler {
         this.currentScene = new Scene(new Region());
     }
 
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         openView("MainView");
     }
@@ -32,7 +30,7 @@ public class ViewHandler {
 
         switch (viewToOpen) {
             case "MainView":
-                root = loadMainView("/org/edu/via/sep4/lorawan_scope/view/main_view/MainView.fxml");
+                root = loadMainView("main_view/MainView.fxml");
                 break;
         }
 
@@ -54,9 +52,8 @@ public class ViewHandler {
     }
 
     private Region loadMainView(String fxmlFile) {
-        Region root = null;
+        Region root;
         if (mainViewController == null) {
-            // load from FXML
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource(fxmlFile));
@@ -67,7 +64,6 @@ public class ViewHandler {
                 e.printStackTrace();
             }
         } else {
-            // reset window
             mainViewController.reset();
         }
         return mainViewController.getRoot();

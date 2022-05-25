@@ -4,6 +4,7 @@ import org.edu.via.sep4.lorawan_scope.model.ModelFactory;
 import org.edu.via.sep4.lorawan_scope.view.downlink_view.DownlinkViewModel;
 import org.edu.via.sep4.lorawan_scope.view.main_view.MainViewModel;
 import org.edu.via.sep4.lorawan_scope.view.uplink_view.UplinkViewModel;
+
 public class ViewModelFactory {
     private final ModelFactory modelFactory;
     private UplinkViewModel uplinkViewModel;
@@ -12,7 +13,7 @@ public class ViewModelFactory {
     private MainViewModel mainViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory) {
-        this.modelFactory=modelFactory;
+        this.modelFactory = modelFactory;
     }
 
     public UplinkViewModel getUplinkViewModel() {
