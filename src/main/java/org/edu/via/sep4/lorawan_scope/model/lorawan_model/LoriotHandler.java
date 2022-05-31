@@ -1,17 +1,13 @@
 package org.edu.via.sep4.lorawan_scope.model.lorawan_model;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.Gson;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
@@ -22,7 +18,6 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
     private final ArrayList<LoriotMessageData> loriotMessages = new ArrayList<>();
 
     public LoriotHandler() {
-        UplinkMessageHandler uplinkMessageHandler = new UplinkMessageHandler();
         downlinkMessageHandler = new DownlinkMessageHandler();
     }
 
@@ -80,34 +75,35 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
         return loriotMessages.get(index);
     }
 
-    void unpackLoRaWANMessage(String json) {
-        JSONObject jo = new JSONObject(json);
-        if (jo.getString("cmd").equals("rx")) {
-            addLoriotMessage(jo.getString("EUI"), tsToString(jo.getLong("ts")), Integer.toString(jo.getInt("fcnt")), Integer.toString(jo.getInt("port")), jo.getString("data"));
-        } else if (jo.getString("cmd").equals("cq")) {
-            JSONArray jsonArray = jo.getJSONArray("cache");
-            Object item;
-            for (int i = jsonArray.length() - 1; i >= 0; i--) {
-                item = jsonArray.get(i);
-                if (item instanceof JSONObject) {
-                    jo = (JSONObject) item;
-                    try {
-                        addLoriotMessage(jo.getString("EUI"), tsToString(jo.getLong("ts")), Integer.toString(jo.getInt("fcnt")), Integer.toString(jo.getInt("port")), jo.getString("data"));
-                    } catch (JSONException e) {
-                        System.out.println();
-                    }
-                }
-            }
-        } else if (jo.getString("cmd").equals("tx")) {
-            if (jo.has("success")) {
-                addLoriotMessage(jo.getString("EUI"), "", "", "", jo.getString("data") + " (Enqueued for sending)");
-            } else {
-                addLoriotMessage(jo.getString("EUI"), "", "", "", jo.getString("error"));
-            }
-        } else if (jo.getString("cmd").equals("txd")) {
-            addLoriotMessage(jo.getString("EUI"), tsToString(jo.getLong("ts")), "", "", "(Enqueued data sent)");
-        }
+    public void unpackLoRaWANMessage(String json) {
+        Gson gson = new Gson();
+        LoriotMessage loriotMessage = gson.fromJson(json, LoriotMessage.class);
 
+        switch (loriotMessage.getType()) {
+            case UPLINK:
+                addLoriotMessage(gson.fromJson(json, LoriotMessage.class));
+                break;
+
+            case CACHE:
+                for (int i = loriotMessage.getUplinkMessages().size() - 1; i >= 0; i--) {
+                    addLoriotMessage(loriotMessage.getUplinkMessages().get(i));
+                }
+                break;
+
+            case QUEUED:
+                if (loriotMessage.getSuccess() != null) {
+                    addLoriotMessage(loriotMessage.getEUI(), "", "", "", loriotMessage.getData() + " (Enqueued for sending)");
+                } else {
+                    addLoriotMessage(loriotMessage.getEUI(), "", "", "", loriotMessage.getError());
+                }
+                break;
+
+            case SEND:
+                addLoriotMessage(loriotMessage.getEUI(), loriotMessage.getLocalTime(), "", "", "(Enqueued data sent)");
+                break;
+
+            default:
+        }
     }
 
     private void addLoriotMessage(String eui, String localTime, String fcnt, String port, String payload) {
@@ -115,17 +111,15 @@ public class LoriotHandler implements UplinkModel, DownlinkModel, LoriotModel {
         changeSupport.firePropertyChange("Add", "", loriotMessages.size() - 1);
     }
 
-    private String tsToString(long ts) {
-        Date date = new Date(ts); // convert seconds to milliseconds
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MM dd HH:mm:ss.SSS"); // the format of your date
-        return dateFormat.format(date);
+    private void addLoriotMessage(LoriotMessage uplinkMessage) {
+        addLoriotMessage(uplinkMessage.getEUI(), uplinkMessage.getLocalTime(), uplinkMessage.getFcntString(), uplinkMessage.getPortString(), uplinkMessage.getData());
     }
 
-    void websocketConnected() {
+    public void websocketConnected() {
         changeSupport.firePropertyChange("WebsocketConnected", "", "Connect");
     }
 
-    void sendDownLinkMessage(String json) {
+    public void sendDownLinkMessage(String json) {
         websocketClient.sendDownLinkMessage(json);
     }
 }
