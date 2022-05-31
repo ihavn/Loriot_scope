@@ -1,8 +1,6 @@
 package org.edu.via.sep4.lorawan_scope.view.uplink_view;
 
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.edu.via.sep4.lorawan_scope.model.ModelFactory;
@@ -18,10 +16,7 @@ public class UplinkViewModel {
 
     public UplinkViewModel(ModelFactory modelFactory) {
         this.uplinkModel = modelFactory.getUplinkModel();
-
         uplinkTable = FXCollections.observableArrayList();
-        StringProperty webSocketURL = new SimpleStringProperty();
-
         listenToUplinkMessages();
     }
 

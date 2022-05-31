@@ -22,10 +22,9 @@ public class UplinkViewController {
     private TableColumn<UplinkView, String> portCol;
 
     private Region root;
-    private UplinkViewModel uplinkViewModel;
 
     public void init(ViewHandler viewHandler, ViewModelFactory viewModelFactory, Region root) {
-        uplinkViewModel = viewModelFactory.getUplinkViewModel();
+        UplinkViewModel uplinkViewModel = viewModelFactory.getUplinkViewModel();
         devEUICol.setCellValueFactory(cellData -> cellData.getValue().getDevEUIProperty());
         fcntUpCol.setCellValueFactory(cellData -> cellData.getValue().getFcntUpProperty());
         payloadCol.setCellValueFactory(cellData -> cellData.getValue().getPayloadProperty());

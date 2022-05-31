@@ -8,7 +8,7 @@ import org.edu.via.sep4.lorawan_scope.view.ViewModelFactory;
 
 public class LoRaWANScopeApp extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         ModelFactory modelFactory = new ModelFactory();
         ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
         ViewHandler viewHandler = new ViewHandler(viewModelFactory);

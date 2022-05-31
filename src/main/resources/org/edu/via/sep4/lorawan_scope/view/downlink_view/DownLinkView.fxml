@@ -4,14 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.edu.via.sep4.lorawan_scope.view.downlink_view.DownlinkViewController">
     <BorderPane prefHeight="76.0" prefWidth="1000.0" style="-fx-background-color: #E0E0E0;">
         <top>
             <Label text="Down Link Messages" BorderPane.alignment="CENTER_LEFT">
                 <font>
-                    <Font name="System Bold" size="18.0" />
+                    <Font name="System Bold" size="18.0"/>
                 </font>
             </Label>
         </top>
@@ -54,13 +53,15 @@
             </HBox>
         </center>
         <right>
-            <Button fx:id="downlinkQueueButton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#downlinkQueueButtonPressed" prefHeight="25.0" prefWidth="75.0" text="Queue" BorderPane.alignment="TOP_CENTER" />
+            <Button fx:id="downlinkQueueButton" alignment="CENTER" disable="true" mnemonicParsing="false"
+                    onAction="#downlinkQueueButtonPressed" prefHeight="25.0" prefWidth="75.0" text="Queue"
+                    BorderPane.alignment="TOP_CENTER"/>
         </right>
         <opaqueInsets>
-            <Insets />
+            <Insets/>
         </opaqueInsets>
         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
         </padding>
     </BorderPane>
 </AnchorPane>

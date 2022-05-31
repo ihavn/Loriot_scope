@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.edu.via.sep4.lorawan_scope.view.uplink_view.UplinkViewController">
     <TableView fx:id="uplinkDataTable" prefHeight="500.0" prefWidth="1000.0">
         <columns>
-            <TableColumn fx:id="devEUICol" prefWidth="159.0" text="Device EUI" />
-            <TableColumn fx:id="localTimeCol" prefWidth="163.0" text="Local time" />
-            <TableColumn fx:id="portCol" prefWidth="57.0" style="-fx-alignment: center;" text="Port" />
-            <TableColumn fx:id="fcntUpCol" prefWidth="85.0" style="-fx-alignment: center;" text="FCntUp" />
-            <TableColumn fx:id="payloadCol" prefWidth="531.0" text="Payload" />
+            <TableColumn fx:id="devEUICol" prefWidth="159.0" text="Device EUI"/>
+            <TableColumn fx:id="localTimeCol" prefWidth="163.0" text="Local time"/>
+            <TableColumn fx:id="portCol" prefWidth="57.0" style="-fx-alignment: center;" text="Port"/>
+            <TableColumn fx:id="fcntUpCol" prefWidth="85.0" style="-fx-alignment: center;" text="FCntUp"/>
+            <TableColumn fx:id="payloadCol" prefWidth="531.0" text="Payload"/>
         </columns>
     </TableView>
 </AnchorPane>

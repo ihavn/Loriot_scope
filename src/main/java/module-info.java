@@ -4,7 +4,7 @@ module org.edu.via.sep4.lorawan_scope.lorawan_scope {
 
     requires java.desktop;
     requires java.net.http;
-    requires org.json;
+    requires com.google.gson;
 
     opens org.edu.via.sep4.lorawan_scope to javafx.fxml;
     exports org.edu.via.sep4.lorawan_scope;
@@ -16,4 +16,7 @@ module org.edu.via.sep4.lorawan_scope.lorawan_scope {
     opens org.edu.via.sep4.lorawan_scope.view.downlink_view to javafx.fxml;
     exports org.edu.via.sep4.lorawan_scope.view.uplink_view;
     opens org.edu.via.sep4.lorawan_scope.view.uplink_view to javafx.fxml;
+
+    exports org.edu.via.sep4.lorawan_scope.model.lorawan_model;
+    opens org.edu.via.sep4.lorawan_scope.model.lorawan_model to com.google.gson;
 }
